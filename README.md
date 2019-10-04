@@ -1,0 +1,2 @@
+# Holoscopes
+占いアプリ
