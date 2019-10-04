@@ -30,9 +30,7 @@ export default Vue.extend({
   },
 })
 </script>
-
-<style scoped>
-h1 {
-  color: aqua;
-}
+<style lang="sass" scoped>
+h1
+  color: aqua
 </style>
