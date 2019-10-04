@@ -2,31 +2,33 @@
   <div>
     <h1>{{ message }}</h1>
     <p>{{ reversedMessage }}</p>
-    <button @click="showAlert">アラート</button>
+    <button @click="showAlert">
+      アラート
+    </button>
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue';
+import Vue from 'vue'
 export default Vue.extend({
   data() {
     return {
       message: 'Hello World!!!',
-    };
-  },
-  methods: {
-    showAlert(): void {
-      alert('Alert!');
-    },
+    }
   },
   computed: {
     reversedMessage(): string {
       return this.message
         .split('')
         .reverse()
-        .join('');
+        .join('')
     },
   },
-});
+  methods: {
+    showAlert(): void {
+      alert('Alert!')
+    },
+  },
+})
 </script>
 
 <style scoped>
