@@ -19,5 +19,8 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    'vue/require-default-prop': 'off',
+    'vue/max-attributes-per-line': 'off',
   },
 }
