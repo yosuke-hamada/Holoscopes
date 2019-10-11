@@ -22,5 +22,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'vue/require-default-prop': 'off',
     'vue/max-attributes-per-line': 'off',
+    'vue/html-self-closing': 'off',
   },
 }
