@@ -1,6 +1,6 @@
 <template>
-  <div class="select-content">
-    <select class="select" @change="itemSelect($event)">
+  <div class="select-content" :style="styles">
+    <select class="select" :style="styles" @change="itemSelect($event)">
       <option value="">
         名前を選択してください
       </option>
@@ -49,7 +49,7 @@ export default Vue.extend({
       return {
         width: width,
         height: height,
-        lineHeight,
+        lineHeight: lineHeight,
         fontSize: fontSize,
       }
     },
@@ -63,15 +63,34 @@ export default Vue.extend({
 })
 </script>
 <style lang="sass" scoped>
+.select-content
+  position: relative
+  display: inline-block
+.select-content:after
+  content: ''
+  width: 6px
+  height: 6px
+  border: 0px
+  border-bottom: solid 2px #b4b3b3
+  border-right: solid 2px #b4b3b3
+  -ms-transform: rotate(45deg)
+  -webkit-transform: rotate(45deg)
+  transform: rotate(45deg)
+  position: absolute
+  top: 50%
+  right: 10px
+  margin-top: -4px
 .select
-	padding: 7px 30px 7px 10px
-	font-size: 93%
-	line-height: 1.1em
-	border-radius: 5px
-	border: none
-	background-repeat: no-repeat
-	background-size: 12px 10px
-	background-position: right 10px center
+  position: relative
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none
+  background: transparent
+  position: relative
+  z-index: 1
+  padding: 0 40px 0 10px
+  border: 1px solid #b4b3b3
+  border-radius: 2px
 .select:focus
   outline: 0
 .select:hover
