@@ -5,7 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "lint": "eslint --fix ./src/components/*.vue"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +14,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
+    "@types/chart.js": "^2.8.7",
     "@typescript-eslint/eslint-plugin": "^2.3.2",
     "@typescript-eslint/parser": "^2.3.2",
     "axios": "^0.19.0",
@@ -35,6 +37,8 @@
     "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {
-    "vue": "^2.6.10"
+    "chart.js": "^2.8.0",
+    "vue": "^2.6.10",
+    "vue-chartjs": "^3.4.2"
   }
 }
