@@ -2,20 +2,7 @@
 import Vue from 'vue'
 import { Prop } from 'vue/types/options.d'
 import { Radar, mixins } from 'vue-chartjs'
-
-interface Dataset {
-  label?: string[]
-  data: number[]
-  backgroundColor?: string[]
-  borderColor?: string[]
-  pointBackgroundColor?: string[]
-  pointBorderColor?: string[]
-}
-
-interface ChartData {
-  labels: string[]
-  datasets: Dataset[]
-}
+import { ChartData } from 'chart.js'
 
 const { reactiveProp } = mixins
 
