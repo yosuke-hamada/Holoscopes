@@ -1,36 +1,25 @@
 <template>
-  <div>
-    <h1>{{ message }}</h1>
-    <p>{{ reversedMessage }}</p>
-    <button @click="showAlert">
-      アラート
-    </button>
+  <div class="container">
+    <horoscope-result></horoscope-result>
   </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import HoroscopeResult from '../components/pages/HoroscopeResult'
+
 export default Vue.extend({
-  data() {
-    return {
-      message: 'Hello World!!!',
-    }
-  },
-  computed: {
-    reversedMessage(): string {
-      return this.message
-        .split('')
-        .reverse()
-        .join('')
-    },
-  },
-  methods: {
-    showAlert(): void {
-      alert('Alert!')
-    },
+  components: {
+    HoroscopeResult,
   },
 })
 </script>
-<style lang="sass" scoped>
-h1
-  color: aqua
+<style lang="sass">
+html, body
+  margin: 0
+  padding: 0
+body, input, button
+  font-family: YuGothic,'Yu Gothic','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'
+.container
+  width: calc(100vw - 360px)
+  margin: auto
 </style>

@@ -25,15 +25,19 @@ export default Vue.extend({
     backgroundColor: {
       type: String as Prop<string>,
     },
+    fontSize: {
+      type: ([String, Number] as any) as Prop<string | number>,
+    },
   },
   computed: {
     styles(): object {
-      const { width, height, color, backgroundColor } = this
+      const { width, height, color, backgroundColor, fontSize } = this
       return {
         width: width,
         height: height,
         color: color,
         'background-color': backgroundColor,
+        fontSize: fontSize,
       }
     },
   },

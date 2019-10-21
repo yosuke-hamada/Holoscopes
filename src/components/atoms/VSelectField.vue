@@ -2,7 +2,7 @@
   <div class="select-content" :style="styles">
     <select class="select" :style="styles" @change="itemSelect($event)">
       <option value="">
-        名前を選択してください
+        選択してください
       </option>
       <option v-for="item in items" :key="item.id" :value="item.id">
         {{ item.name }}

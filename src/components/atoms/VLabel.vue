@@ -39,6 +39,10 @@ export default Vue.extend({
       type: ([String, Number] as any) as Prop<string | number>,
       default: '16px',
     },
+    display: {
+      type: String as Prop<string>,
+      default: 'inline-block',
+    },
   },
   computed: {
     styles(): object {
@@ -51,6 +55,7 @@ export default Vue.extend({
         fontFamily,
         fontWeight,
         fontSize,
+        display,
       } = this
       return {
         width: width,
@@ -61,6 +66,7 @@ export default Vue.extend({
         fontFamily: fontFamily,
         fontWeight: fontWeight,
         fontSize: fontSize,
+        display: display,
       }
     },
   },
