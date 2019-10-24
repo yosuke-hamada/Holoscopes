@@ -2,32 +2,17 @@
 import Vue from 'vue'
 import { Prop } from 'vue/types/options.d'
 import { Radar, mixins } from 'vue-chartjs'
-
-interface Dataset {
-  label?: string[]
-  data: number[]
-  backgroundColor?: string[]
-  borderColor?: string[]
-  pointBackgroundColor?: string[]
-  pointBorderColor?: string[]
-}
-
-interface ChartData {
-  labels: string[]
-  datasets: Dataset[]
-}
-
-const { reactiveProp } = mixins
+import { ChartData, ChartOptions } from 'chart.js'
 
 export default Vue.extend({
   extends: Radar,
-  mixins: [reactiveProp],
+  mixins: [mixins.reactiveProp],
   props: {
     chartData: {
       type: Object as Prop<ChartData>,
     },
-    option: {
-      type: Object as Prop<object>,
+    options: {
+      type: Object as Prop<ChartOptions>,
     },
     width: {
       type: ([String, Number] as any) as Prop<string | number>,
@@ -37,7 +22,7 @@ export default Vue.extend({
     },
   },
   mounted(): void {
-    ;(this as any).renderChart(this.chartData, this.option)
+    ;(this as any).renderChart(this.chartData, this.options)
   },
 })
 </script>

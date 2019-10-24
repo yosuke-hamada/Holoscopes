@@ -1,5 +1,10 @@
 <template>
-  <button class="v-button" :style="styles" @click="onClick()">
+  <button
+    class="v-button"
+    :style="styles"
+    :disabled="disabled"
+    @click="onClick()"
+  >
     {{ text }}
   </button>
 </template>
@@ -25,15 +30,22 @@ export default Vue.extend({
     backgroundColor: {
       type: String as Prop<string>,
     },
+    fontSize: {
+      type: ([String, Number] as any) as Prop<string | number>,
+    },
+    disabled: {
+      type: Boolean as Prop<boolean>,
+    },
   },
   computed: {
     styles(): object {
-      const { width, height, color, backgroundColor } = this
+      const { width, height, color, backgroundColor, fontSize } = this
       return {
         width: width,
         height: height,
         color: color,
         'background-color': backgroundColor,
+        fontSize: fontSize,
       }
     },
   },
@@ -54,4 +66,6 @@ export default Vue.extend({
   box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2)
 .v-button:focus
   outline: 0
+.v-button:disabled
+  opacity: 0.4
 </style>
