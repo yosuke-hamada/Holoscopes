@@ -15,13 +15,8 @@ export default class Constellation {
   private static Pisces = '魚座'
 
   public static getConstellation(targetBirthday: string): string | null {
-    const replacedBirthday = targetBirthday.replace(
-      /[Ａ-Ｚａ-ｚ０-９！-～]/g,
-      s => {
-        return String.fromCharCode(s.charCodeAt(0) - 0xfee0)
-      }
-    )
-    const birthday = moment(replacedBirthday, 'MM-DD')
+    const convertedBirthday = this.convertHalfChar(targetBirthday)
+    const birthday = this.getMoment(convertedBirthday)
     switch (true) {
       case birthday.isBetween(this.getMoment('3-20'), this.getMoment('4-20')):
         return this.Aries
@@ -51,6 +46,12 @@ export default class Constellation {
       default:
         return null
     }
+  }
+
+  private static convertHalfChar(target: string): string {
+    return target.replace(/[Ａ-Ｚａ-ｚ０-９！-～]/g, s => {
+      return String.fromCharCode(s.charCodeAt(0) - 0xfee0)
+    })
   }
 
   private static getMoment(date: string): moment.Moment {

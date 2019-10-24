@@ -11,6 +11,9 @@
         <v-label :text="inputMonthText"></v-label>
         <v-text-input @input="getTargetDay"></v-text-input>
         <v-label :text="inputDayText"></v-label>
+        <div>
+          <v-label :text="showErrorMessage"></v-label>
+        </div>
       </div>
       <div class="button-field">
         <v-button
@@ -19,6 +22,7 @@
           :font-size="buttonFontSize"
           :background-color="buttonBackGroundColor"
           :color="buttonColor"
+          :disabled="buttonDisabled"
           @click="displayResult"
         ></v-button>
       </div>
@@ -56,7 +60,6 @@ export default Vue.extend({
     targetName: string
     targetMonth: string
     targetDay: string
-    errorMessage: string
     inputLabelWidth: string
     buttonWidth: string
     buttonFontSize: string
@@ -67,6 +70,7 @@ export default Vue.extend({
     inputMonthText: string
     inputDayText: string
     inputButtonText: string
+    errorMessage: string
   } {
     return {
       chartData: {},
@@ -86,7 +90,6 @@ export default Vue.extend({
       targetName: '',
       targetMonth: '',
       targetDay: '',
-      errorMessage: '',
       inputLabelWidth: '100px',
       buttonWidth: '300px',
       buttonFontSize: '30px',
@@ -97,7 +100,18 @@ export default Vue.extend({
       inputMonthText: '月',
       inputDayText: '日',
       inputButtonText: '占う',
+      errorMessage: '',
     }
+  },
+  computed: {
+    buttonDisabled(): boolean {
+      return this.targetMonth.length > 2 || this.targetDay.length > 2
+    },
+    showErrorMessage(): string {
+      return this.buttonDisabled
+        ? '月日にはそれぞれ0文字以上2文字以下の数字を入力してください'
+        : ''
+    },
   },
   methods: {
     getTargetName(value: string): void {
@@ -105,22 +119,10 @@ export default Vue.extend({
     },
 
     getTargetMonth(value: string): void {
-      if (this.checkDateLength(value)) {
-        this.errorMessage = '月には2桁以下の数字を入力してください'
-        return
-      }
-
-      this.errorMessage = ''
       this.targetMonth = value
     },
 
     getTargetDay(value: string): void {
-      if (this.checkDateLength(value)) {
-        this.errorMessage = '日には2桁以下の数字を入力してください'
-        return
-      }
-
-      this.errorMessage = ''
       this.targetDay = value
     },
 
@@ -148,7 +150,7 @@ export default Vue.extend({
         return item.sign === targetSign
       })
 
-      this.sign = targetSign
+      this.sign = dataset[0].sign
       this.content = dataset[0].content
 
       const chartDataset: ChartDataSets = {

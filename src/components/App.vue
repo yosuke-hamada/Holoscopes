@@ -5,7 +5,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import HoroscopeResult from '../components/pages/HoroscopeResult'
+import HoroscopeResult from '../components/pages/HoroscopeResult.vue'
 
 export default Vue.extend({
   components: {
