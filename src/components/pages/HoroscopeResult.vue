@@ -12,7 +12,10 @@
         <v-text-input @input="getTargetDay"></v-text-input>
         <v-label :text="inputDayText"></v-label>
         <div>
-          <v-label :text="showErrorMessage"></v-label>
+          <v-label
+            :text="showErrorMessage"
+            :color="errorMessageColor"
+          ></v-label>
         </div>
       </div>
       <div class="button-field">
@@ -27,12 +30,14 @@
         ></v-button>
       </div>
     </div>
-    <v-label :text="errorMessage"></v-label>
+    <v-label :text="errorMessage" :color="errorMessageColor"></v-label>
     <v-chart :chart-data="chartData" :options="options"></v-chart>
-    <div>
-      <v-label :text="sign"></v-label>
+    <div class="content-field">
+      <div class="sign-field">
+        <v-label :text="sign" :font-size="signFontSize"></v-label>
+      </div>
+      <v-label :text="content"></v-label>
     </div>
-    <v-label :text="content"></v-label>
   </div>
 </template>
 <script lang="ts">
@@ -71,6 +76,8 @@ export default Vue.extend({
     inputDayText: string
     inputButtonText: string
     errorMessage: string
+    errorMessageColor: string
+    signFontSize: string
   } {
     return {
       chartData: {},
@@ -101,6 +108,8 @@ export default Vue.extend({
       inputDayText: '日',
       inputButtonText: '占う',
       errorMessage: '',
+      errorMessageColor: '#d93025',
+      signFontSize: '18px',
     }
   },
   computed: {
@@ -161,6 +170,9 @@ export default Vue.extend({
           dataset[0].total,
           Math.floor(Math.random() * 5) + 1,
         ],
+        backgroundColor: 'rgba(255, 0, 0, 0.1)',
+        borderColor: 'rgba(255, 0, 0, 0.7)',
+        label: this.targetName,
       }
 
       this.chartData = {
@@ -183,4 +195,7 @@ export default Vue.extend({
 .button-field
   margin-top: 30px
   text-align: center
+.sign-field
+  text-align: center
+  margin: 10px 0
 </style>
