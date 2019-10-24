@@ -1,11 +1,12 @@
 {
-  "name": "webpack-typescript",
+  "name": "holoscopes",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "lint": "eslint --fix ./src/components/*.vue"
   },
   "keywords": [],
   "author": "",
@@ -13,8 +14,19 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
+    "@types/chart.js": "^2.8.7",
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
+    "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^5.2.3",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
+    "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "ts-loader": "^6.2.0",
     "typescript": "^3.6.3",
@@ -25,6 +37,9 @@
     "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {
-    "vue": "^2.6.10"
+    "chart.js": "^2.8.0",
+    "moment": "^2.24.0",
+    "vue": "^2.6.10",
+    "vue-chartjs": "^3.4.2"
   }
 }

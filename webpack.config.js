@@ -1,5 +1,5 @@
-const path = require('path');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const path = require('path')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry: './src/index.ts',
@@ -25,11 +25,32 @@ module.exports = {
         test: /\.css$/,
         use: ['vue-style-loader', 'css-loader'],
       },
+      {
+        test: /\.sass$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sassOptions: {
+                indentedSyntax: true,
+              },
+            },
+          },
+        ],
+      },
     ],
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     port: '3000',
+    proxy: {
+      '/api/*': {
+        target: 'http://api.jugemkey.jp',
+        secure: false,
+      },
+    },
   },
   resolve: {
     extensions: ['.ts', '.js', '.vue'],
@@ -42,4 +63,4 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [new VueLoaderPlugin()],
-};
+}
