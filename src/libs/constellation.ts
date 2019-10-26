@@ -1,20 +1,20 @@
 import * as moment from 'moment'
 
-export default class Constellation {
-  private static Aries = '牡羊座'
-  private static Taurus = '牡牛座'
-  private static Gemini = '双子座'
-  private static Cancer = '蟹座'
-  private static Leo = '獅子座'
-  private static Virgo = '乙女座'
-  private static Libra = '天秤座'
-  private static Scorpio = '蠍座'
-  private static Sagittarius = '射手座'
-  private static Capricorn = '山羊座'
-  private static Aquarius = '水瓶座'
-  private static Pisces = '魚座'
+class Constellation {
+  private Aries = '牡羊座'
+  private Taurus = '牡牛座'
+  private Gemini = '双子座'
+  private Cancer = '蟹座'
+  private Leo = '獅子座'
+  private Virgo = '乙女座'
+  private Libra = '天秤座'
+  private Scorpio = '蠍座'
+  private Sagittarius = '射手座'
+  private Capricorn = '山羊座'
+  private Aquarius = '水瓶座'
+  private Pisces = '魚座'
 
-  public static getConstellation(targetBirthday: string): string | null {
+  public getConstellation(targetBirthday: string): string | null {
     const convertedBirthday = this.convertHalfChar(targetBirthday)
     const birthday = this.getMoment(convertedBirthday)
     switch (true) {
@@ -48,13 +48,15 @@ export default class Constellation {
     }
   }
 
-  private static convertHalfChar(target: string): string {
+  private convertHalfChar(target: string): string {
     return target.replace(/[Ａ-Ｚａ-ｚ０-９！-～]/g, s => {
       return String.fromCharCode(s.charCodeAt(0) - 0xfee0)
     })
   }
 
-  private static getMoment(date: string): moment.Moment {
+  private getMoment(date: string): moment.Moment {
     return moment(date, 'MM-DD')
   }
 }
+
+export const constellation = new Constellation()

@@ -52,11 +52,11 @@ export default Vue.extend({
     styles(): object {
       const { width, height, lineHeight, fontSize, display } = this
       return {
-        width: width,
-        height: height,
+        width,
+        height,
         lineHeight,
-        fontSize: fontSize,
-        display: display,
+        fontSize,
+        display,
       }
     },
     inputValue: {

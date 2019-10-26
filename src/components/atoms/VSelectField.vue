@@ -1,6 +1,6 @@
 <template>
   <div class="select-content" :style="styles">
-    <select class="select" :style="styles" @change="itemSelect($event)">
+    <select class="select" :style="styles" @change="itemSelect">
       <option value="">
         選択してください
       </option>
@@ -47,10 +47,10 @@ export default Vue.extend({
     styles(): object {
       const { width, height, lineHeight, fontSize } = this
       return {
-        width: width,
-        height: height,
-        lineHeight: lineHeight,
-        fontSize: fontSize,
+        width,
+        height,
+        lineHeight,
+        fontSize,
       }
     },
   },

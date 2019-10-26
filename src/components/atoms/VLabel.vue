@@ -58,15 +58,15 @@ export default Vue.extend({
         display,
       } = this
       return {
-        width: width,
-        height: height,
+        width,
+        height,
         lineHeight,
-        color: color,
-        'background-color': backgroundColor,
-        fontFamily: fontFamily,
-        fontWeight: fontWeight,
-        fontSize: fontSize,
-        display: display,
+        color,
+        backgroundColor,
+        fontFamily,
+        fontWeight,
+        fontSize,
+        display,
       }
     },
   },

@@ -3,7 +3,7 @@
     class="v-button"
     :style="styles"
     :disabled="disabled"
-    @click="onClick()"
+    @click="onClick"
   >
     {{ text }}
   </button>
@@ -41,11 +41,11 @@ export default Vue.extend({
     styles(): object {
       const { width, height, color, backgroundColor, fontSize } = this
       return {
-        width: width,
-        height: height,
-        color: color,
-        'background-color': backgroundColor,
-        fontSize: fontSize,
+        width,
+        height,
+        color,
+        backgroundColor,
+        fontSize,
       }
     },
   },
