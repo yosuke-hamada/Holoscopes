@@ -47,7 +47,7 @@ module.exports = {
     port: '3000',
     proxy: {
       '/api/*': {
-        target: 'http://api.jugemkey.jp',
+        target: 'http://localhost:9000',
         secure: false,
       },
     },
