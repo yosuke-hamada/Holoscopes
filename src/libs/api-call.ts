@@ -3,7 +3,8 @@ import { Horoscope } from '../types/horoscope'
 
 class ApiCall {
   async fetchResult(): Promise<Horoscope[]> {
-    const url = '.netlify/functions/horoscope'
+    const url =
+      'https://reverent-goodall-a91ac0.netlify.com/.netlify/functions/horoscope'
     try {
       const response = await axios.get(url)
       response.data
