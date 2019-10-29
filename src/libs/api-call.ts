@@ -1,22 +1,14 @@
-import axiosBase from 'axios'
-import * as moment from 'moment'
+import axios from 'axios'
 import { Horoscope } from '../types/horoscope'
 
 class ApiCall {
-  async fetchResult(): Promise<Array<Horoscope>> {
-    const baseUrl = 'api/horoscope/free/'
-    const today = moment().format('YYYY/MM/DD')
-    const axios = axiosBase.create({
-      proxy: {
-        host: '163.44.191.61',
-        port: 80,
-      },
-    })
-    const url = `${baseUrl}${today}`
+  async fetchResult(): Promise<Horoscope[]> {
+    const url =
+      'https://reverent-goodall-a91ac0.netlify.com/.netlify/functions/horoscope'
     try {
       const response = await axios.get(url)
-      const result = response.data.horoscope[today]
-      return result
+      response.data
+      return response.data
     } catch (error) {
       return error
     }

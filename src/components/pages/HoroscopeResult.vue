@@ -3,13 +3,13 @@
     <div class="input-field">
       <div class="input-name">
         <v-label :text="inputNameText" :width="inputLabelWidth"></v-label>
-        <v-text-input @input="getTargetName"></v-text-input>
+        <v-text-input @input="setTargetName"></v-text-input>
       </div>
       <div class="input-birthday">
         <v-label :text="inputBirthdayText" :width="inputLabelWidth"></v-label>
-        <v-text-input @input="getTargetMonth"></v-text-input>
+        <v-text-input @input="setTargetMonth"></v-text-input>
         <v-label :text="inputMonthText"></v-label>
-        <v-text-input @input="getTargetDay"></v-text-input>
+        <v-text-input @input="setTargetDay"></v-text-input>
         <v-label :text="inputDayText"></v-label>
         <div>
           <v-label
@@ -42,13 +42,14 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import { ChartData, ChartDataSets, ChartOptions } from 'chart.js'
+import { ChartData, ChartOptions } from 'chart.js'
 import { apiCall } from '../../libs/api-call'
 import VChart from '../atoms/VChart.vue'
 import VLabel from '../atoms/VLabel.vue'
 import VTextInput from '../atoms/VTextInput.vue'
 import VButton from '../atoms/VButton.vue'
-import Constellation from '../../libs/constellation'
+import { constellation } from '../../libs/constellation'
+import { Horoscope } from '../../types/horoscope'
 
 export default Vue.extend({
   components: {
@@ -123,15 +124,15 @@ export default Vue.extend({
     },
   },
   methods: {
-    getTargetName(value: string): void {
+    setTargetName(value: string): void {
       this.targetName = value
     },
 
-    getTargetMonth(value: string): void {
+    setTargetMonth(value: string): void {
       this.targetMonth = value
     },
 
-    getTargetDay(value: string): void {
+    setTargetDay(value: string): void {
       this.targetDay = value
     },
 
@@ -143,31 +144,36 @@ export default Vue.extend({
       if (this.options.scale !== undefined) this.options.scale.display = true
     },
 
-    async displayResult(): Promise<void> {
-      const targetBirthday = `${this.targetMonth}-${this.targetDay}`
-      const targetSign = Constellation.getConstellation(targetBirthday)
+    getTargetSign(month: string, day: string): string | null {
+      const targetBirthday = `${month}-${day}`
+      return constellation.getConstellation(targetBirthday)
+    },
 
-      if (targetSign === null) {
-        this.errorMessage = '不正な日付です'
-        return
-      }
+    getApiCallResult(): Promise<Horoscope[]> {
+      return apiCall.fetchResult()
+    },
 
-      this.displayChart()
-
-      const response = await apiCall.fetchResult()
-      const dataset = response.filter(item => {
-        return item.sign === targetSign
+    getChartDataset(
+      datasets: Horoscope[],
+      sign: string
+    ): Horoscope | undefined {
+      return datasets.find(dataset => {
+        return dataset.sign === sign
       })
+    },
 
-      this.sign = dataset[0].sign
-      this.content = dataset[0].content
+    setDisplayContents(dataset: Horoscope): void {
+      this.sign = dataset.sign
+      this.content = dataset.content
+    },
 
-      const chartDataset: ChartDataSets = {
+    setChartDataset(dataset: Horoscope): void {
+      const chartDataset = {
         data: [
-          dataset[0].money,
-          dataset[0].job,
-          dataset[0].love,
-          dataset[0].total,
+          dataset.money,
+          dataset.job,
+          dataset.love,
+          dataset.total,
           Math.floor(Math.random() * 5) + 1,
         ],
         backgroundColor: 'rgba(255, 0, 0, 0.1)',
@@ -179,6 +185,27 @@ export default Vue.extend({
         labels: ['お金', '仕事', '恋愛', '総合', '特別点'],
         datasets: [chartDataset],
       }
+    },
+
+    async displayResult(): Promise<void> {
+      const targetSign = this.getTargetSign(this.targetMonth, this.targetDay)
+
+      if (targetSign === null) {
+        this.errorMessage = '不正な日付です'
+        return
+      }
+
+      this.displayChart()
+
+      const datasets = await this.getApiCallResult()
+
+      const dataset = this.getChartDataset(datasets, targetSign)
+
+      if (dataset === undefined) return
+
+      this.setDisplayContents(dataset)
+      this.setChartDataset(dataset)
+
       this.errorMessage = ''
     },
   },

@@ -45,6 +45,12 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
     port: '3000',
+    proxy: {
+      '/api/*': {
+        target: 'http://localhost:9000',
+        secure: false,
+      },
+    },
   },
   resolve: {
     extensions: ['.ts', '.js', '.vue'],
