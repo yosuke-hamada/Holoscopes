@@ -4,7 +4,7 @@
       <option value="">
         選択してください
       </option>
-      <option v-for="item in items" :key="item.id" :value="item.id">
+      <option v-for="item in convertdItems" :key="item.id" :value="item.name">
         {{ item.name }}
       </option>
     </select>
@@ -14,7 +14,7 @@
 import Vue from 'vue'
 import { Prop } from 'vue/types/options.d'
 
-interface SelectItem {
+interface Item {
   id: number
   name: string
 }
@@ -22,10 +22,10 @@ interface SelectItem {
 export default Vue.extend({
   props: {
     items: {
-      type: Array as Prop<SelectItem[]>,
+      type: Array as Prop<string[]>,
     },
     selectedItem: {
-      type: Object as Prop<SelectItem>,
+      type: String as Prop<string>,
     },
     width: {
       type: ([String, Number] as any) as Prop<string | number>,
@@ -52,6 +52,14 @@ export default Vue.extend({
         lineHeight,
         fontSize,
       }
+    },
+    convertdItems(): Item[] {
+      return this.items.map((item, index) => {
+        return {
+          id: index + 1,
+          name: item,
+        }
+      })
     },
   },
   methods: {
