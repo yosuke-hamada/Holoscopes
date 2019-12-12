@@ -30,15 +30,15 @@ export default Vue.extend({
     },
     height: {
       type: ([String, Number] as any) as Prop<string | number>,
-      default: '24px',
+      default: ' 28px',
     },
     lineHeight: {
       type: ([String, Number] as any) as Prop<string | number>,
-      default: '16px',
+      default: '20px',
     },
     fontSize: {
       type: ([String, Number] as any) as Prop<string | number>,
-      default: '16px',
+      default: '20px',
     },
     placeholder: {
       type: ([String, Number] as any) as Prop<string | number>,
