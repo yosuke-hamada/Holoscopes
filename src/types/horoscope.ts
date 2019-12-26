@@ -9,4 +9,6 @@ export interface Horoscope {
   love: number
   rank: number
   sign: string
+  shopping: number
+  gambling: number
 }

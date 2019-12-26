@@ -6,6 +6,9 @@
     :maxlength="maxLength"
     :placeholder="placeholder"
     class="input"
+    @keydown="onKeyDown"
+    @compositionstart="onComposingStart"
+    @compositionend="onComposingEnd"
   />
 </template>
 <script lang="ts">
@@ -48,6 +51,13 @@ export default Vue.extend({
       default: 'inline-block',
     },
   },
+  data(): {
+    composing: boolean
+  } {
+    return {
+      composing: false,
+    }
+  },
   computed: {
     styles(): object {
       const { width, height, lineHeight, fontSize, display } = this
@@ -66,6 +76,18 @@ export default Vue.extend({
       set(newValue: string): void {
         this.$emit('input', newValue)
       },
+    },
+  },
+  methods: {
+    onComposingStart(): void {
+      this.composing = true
+    },
+    onComposingEnd(): void {
+      this.composing = false
+    },
+    onKeyDown(e: KeyboardEvent): void {
+      if (this.composing) return
+      this.$emit('keydown', e)
     },
   },
 })
