@@ -14,13 +14,13 @@ class Constellation {
   }
   private Gemini: Conste = {
     sign: '双子座',
-    backgroundColor: 'rgba(255,255,0,0.1)',
-    borderColor: 'rgba(255,255,0,0.9)',
+    backgroundColor: 'rgba(230,230,0,0.1)',
+    borderColor: 'rgba(230,230,0,0.9)',
   }
   private Cancer: Conste = {
     sign: '蟹座',
-    backgroundColor: 'rgba(198,201,181,0.1)',
-    borderColor: 'rgba(198,201,181,0.9)',
+    backgroundColor: 'rgba(123,125,112,0.1)',
+    borderColor: 'rgba(123,125,112,0.9)',
   }
   private Leo: Conste = {
     sign: '獅子座',
@@ -29,8 +29,8 @@ class Constellation {
   }
   private Virgo: Conste = {
     sign: '乙女座',
-    backgroundColor: 'rgba(250,209,178,0.1)',
-    borderColor: 'rgba(250,209,178,0.9)',
+    backgroundColor: 'rgba(214,179,152,0.1)',
+    borderColor: 'rgba(214,179,152,0.9)',
   }
   private Libra: Conste = {
     sign: '天秤座',

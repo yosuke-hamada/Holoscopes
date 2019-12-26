@@ -36,16 +36,32 @@ export default Vue.extend({
     disabled: {
       type: Boolean as Prop<boolean>,
     },
+    fontFamily: {
+      type: String as Prop<string>,
+    },
+    fontWeight: {
+      type: ([String, Number] as any) as Prop<string | number>,
+    },
   },
   computed: {
     styles(): object {
-      const { width, height, color, backgroundColor, fontSize } = this
+      const {
+        width,
+        height,
+        color,
+        backgroundColor,
+        fontSize,
+        fontFamily,
+        fontWeight,
+      } = this
       return {
         width,
         height,
         color,
         backgroundColor,
         fontSize,
+        fontFamily,
+        fontWeight,
       }
     },
   },

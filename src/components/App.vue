@@ -17,9 +17,10 @@ export default Vue.extend({
 html, body
   margin: 0
   padding: 0
+  box-sizing: border-box
 body, input, button
   font-family: YuGothic,'Yu Gothic','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'
 .container
   width: calc(100vw - 360px)
-  margin: auto
+  margin: auto auto 50px auto
 </style>
