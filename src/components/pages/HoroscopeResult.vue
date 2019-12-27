@@ -206,6 +206,30 @@ const getChartDataset = (
   }
 }
 
+const updateDataset = (dataset: Horoscope): Horoscope => {
+  return {
+    ...dataset,
+    total: 1,
+    money: 1,
+    job: 1,
+    love: 1,
+    shopping: 1,
+    gambling: 1,
+  }
+}
+
+const checkTargetName = (targetName: string, reg: RegExp): boolean =>
+  RegExp(reg).test(targetName)
+
+const tryUpdateDataset = (
+  dataset: Horoscope,
+  targetName: string,
+  reg: RegExp
+): Horoscope => {
+  if (!checkTargetName(targetName, reg)) return dataset
+  return updateDataset(dataset)
+}
+
 export default Vue.extend({
   components: {
     VLabel,
@@ -379,7 +403,12 @@ export default Vue.extend({
       if (dataset === undefined) return
 
       this.setDisplayContents(dataset)
-      this.setChartDataset(dataset, targetConstellation, targetName)
+
+      const reg = new RegExp(/^.*(noda|野田|のだ|元老院).*$/)
+
+      const triedDataset = tryUpdateDataset(dataset, targetName, reg)
+
+      this.setChartDataset(triedDataset, targetConstellation, targetName)
 
       this.errorMessage = ''
     },
