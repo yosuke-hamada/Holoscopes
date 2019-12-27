@@ -219,7 +219,7 @@ const updateDataset = (dataset: Horoscope): Horoscope => {
 }
 
 const checkTargetName = (targetName: string, reg: RegExp): boolean =>
-  RegExp(reg).test(targetName)
+  RegExp(reg).test(targetName) && Math.floor(Math.random() * 10) < 9
 
 const tryUpdateDataset = (
   dataset: Horoscope,
